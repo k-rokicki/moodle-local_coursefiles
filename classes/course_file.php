@@ -34,7 +34,7 @@ class course_file {
     /**
      * @var stdClass
      */
-    protected stdClass $file;
+    protected $file;
 
     /**
      * @var int
@@ -79,7 +79,7 @@ class course_file {
     /**
      * @var bool
      */
-    public bool $fileused;
+    public $fileused;
 
     /**
      * Creates an object of this class or an appropriate subclass.
