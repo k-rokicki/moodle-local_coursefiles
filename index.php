@@ -76,7 +76,6 @@ if ($action === 'download') {
     }
 }
 
-//$filelist = $coursefiles->get_file_list();
 $renderer = $PAGE->get_renderer('local_coursefiles');
 
 echo $OUTPUT->header();

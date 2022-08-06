@@ -31,23 +31,54 @@ use stdClass;
  * @license    http://www.gnu.org/copyleft/gpl.html GNU GPL v3 or later
  */
 class course_file {
-
+    /**
+     * @var stdClass
+     */
     protected stdClass $file;
 
-    protected int $courseid = 0;
-    public int $fileid = 0;
-    public string $filesize = ''; // Friendly readable size of the file (MB or kB as appropriate).
-    public string $filetype = '';
+    /**
+     * @var int
+     */
+    protected $courseid = 0;
+
+    /**
+     * @var int
+     */
+    public $fileid = 0;
+
+    /**
+     * @var string Friendly readable size of the file (MB or kB as appropriate).
+     */
+    public $filesize = '';
+
+    /**
+     * @var string
+     */
+    public $filetype = '';
+
     /**
      * @var false|string
      */
     public $fileurl = false;
-    public string $filename = '';
+
+    /**
+     * @var string
+     */
+    public $filename = '';
+
     /**
      * @var false|string A link to the page where the file is used.
      */
     public $filecomponenturl = false;
-    public string $filecomponent;
+
+    /**
+     * @var string
+     */
+    public $filecomponent;
+
+    /**
+     * @var bool
+     */
     public bool $fileused;
 
     /**

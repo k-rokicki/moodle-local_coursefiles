@@ -18,7 +18,6 @@ namespace local_coursefiles;
 
 use coding_exception;
 use lang_string;
-use function get_string;
 
 /**
  * Class mimetypes
@@ -30,8 +29,9 @@ use function get_string;
 class mimetypes {
     /**
      * Mapping of file types to possible mime types.
+     * @var array
      */
-    static protected array $mimetypes = array(
+    static protected $mimetypes = array(
         'document' => array('application/epub+zip', 'application/msword', 'application/pdf',
             'application/postscript', 'application/vnd.ms-%', 'application/vnd.oasis.opendocument%',
             'application/vnd.openxmlformats-officedocument%', 'application/vnd.sun.xml%',

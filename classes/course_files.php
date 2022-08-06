@@ -32,21 +32,46 @@ use dml_exception;
 use lang_string;
 use moodle_exception;
 use zip_packer;
-use function get_string;
 
 /**
  * Class course_files
  * @package local_coursefiles
  */
 class course_files {
+    /**
+     * @var context
+     */
+    protected $context;
 
-    protected context $context;
-    protected ?array $components = null;
-    protected ?array $filelist = null;
-    protected string $filtercomponent;
-    protected string $filterfiletype;
-    protected course_modinfo $coursemodinfo;
-    protected int $courseid;
+    /**
+     * @var array
+     */
+    protected $components = null;
+
+    /**
+     * @var array
+     */
+    protected $filelist = null;
+
+    /**
+     * @var string
+     */
+    protected $filtercomponent;
+
+    /**
+     * @var string
+     */
+    protected $filterfiletype;
+
+    /**
+     * @var course_modinfo
+     */
+    protected $coursemodinfo;
+
+    /**
+     * @var int
+     */
+    protected $courseid;
 
     /**
      * course_files constructor.
