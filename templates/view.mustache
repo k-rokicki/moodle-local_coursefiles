@@ -1,0 +1,129 @@
+{{!
+    This file is part of Moodle - http://moodle.org/
+
+    Moodle is free software: you can redistribute it and/or modify
+    it under the terms of the GNU General Public License as published by
+    the Free Software Foundation, either version 3 of the License, or
+    (at your option) any later version.
+
+    Moodle is distributed in the hope that it will be useful,
+    but WITHOUT ANY WARRANTY; without even the implied warranty of
+    MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+    GNU General Public License for more details.
+
+    You should have received a copy of the GNU General Public License
+    along with Moodle.  If not, see <http://www.gnu.org/licenses/>.
+}}
+{{!
+    @template local_coursefiles/view
+
+    List course files layout template.
+
+    Context variables required for this template:
+    * component_selection_html - HTML snippet for file component select drop-down menu
+    * file_type_selection_html - HTML snippet for file type select drop-down menu
+    * url                      - Form post URL
+    * sesskey                  - Sesskey string
+    * files                    - Array of files
+    * files_exist              - Boolean
+
+    Example context (json):
+    {
+        "component_selection_html" : "",
+        "file_type_selection_html" : "",
+        "url"                      : "https://mymoodle.invalid/local/coursefiles/index.php?courseid=34",
+        "sesskey"                  : "lDMLz7xAGt",
+        "files"                    : [{
+                                        "filename"         : "my_picture.png",
+                                        "fileurl"          : "",
+                                        "filesize"         : "516.1KB",
+                                        "filecomponent"    : "Course",
+                                        "filecomponenturl" : "",
+                                        "filetype"         : "Image"
+                                     }],
+        "files_exist"              : true
+    }
+
+}}
+
+<h2>
+    {{#str}}pluginname,local_coursefiles{{/str}}
+</h2>
+
+<div class="local_coursefiles_menu">
+    <div class="local_coursefiles_selection">
+        {{#str}}filter:component,local_coursefiles{{/str}}: {{{component_selection_html}}}
+    </div>
+    <div class="local_coursefiles_selection">
+        {{#str}}filter:filetype,local_coursefiles{{/str}}: {{{file_type_selection_html}}}
+    </div>
+</div>
+
+{{#files_exist}}
+    <form action="{{{url}}}" method="post" id="filelist">
+    <input name="sesskey" type="hidden" value="{{{sesskey}}}" />
+
+    <table class="local_coursefiles_table generaltable">
+        <thead>
+            <tr>
+                <th class="header c0" scope="col">
+                    <input type="checkbox" class="local_coursefiles_check_uncheck_all" name="check_uncheck_all" />
+                </th>
+                <th class="header c1" scope="col">{{#str}}filename,local_coursefiles{{/str}}</th>
+                <th class="header c2" scope="col">{{#str}}filesize,local_coursefiles{{/str}}</th>
+                <th class="header c3" scope="col">{{#str}}component,local_coursefiles{{/str}}</th>
+                <th class="header c4 lastcol" scope="col">{{#str}}mimetype,local_coursefiles{{/str}}</th>
+            </tr>
+        </thead>
+        <tbody>
+        {{#files}}
+            <tr>
+                <td class="cell c0" style="text-align: left;">
+                    <input type="checkbox" class="local_coursefiles_file_checkbox" name="file[{{fileid}}]" />
+                </td>
+                <td class="cell c1">
+                    {{#fileurl}}
+                        <a href="{{{fileurl}}}">{{filename}}</a>
+                    {{/fileurl}}
+                    {{^fileurl}}
+                        {{filename}}
+                    {{/fileurl}}
+                </td>
+                <td class="cell c2">{{filesize}}</td>
+                <td class="cell c3">
+                    {{#filecomponenturl}}
+                        <a href="{{{filecomponenturl}}}">{{filecomponent}}</a>
+                    {{/filecomponenturl}}
+                    {{^filecomponenturl}}
+                        {{filecomponent}}
+                    {{/filecomponenturl}}
+                </td>
+                <td class="cell c4 lastcol">{{filetype}}</td>
+            </tr>
+        {{/files}}
+    </table>
+    <div class="local_coursefiles_files_actions">
+        <div class="local_coursefiles_files_action">
+            <button class="btn btn-secondary" type="submit" name="action" value="download">
+                {{#str}}download,local_coursefiles{{/str}}
+            </button>
+        </div>
+    </div>
+
+    </form>
+
+{{/files_exist}}
+{{^files_exist}}
+    <b>{{#str}}nothingfound,local_coursefiles{{/str}}</b>
+{{/files_exist}}
+
+
+{{#js}}
+    require(['jquery'], function($) {
+    var nextstatus = true;
+    $('.local_coursefiles_check_uncheck_all').click(function() {
+        $('.local_coursefiles_file_checkbox').prop('checked', nextstatus);
+        nextstatus = !nextstatus;
+    });
+});
+{{/js}}
