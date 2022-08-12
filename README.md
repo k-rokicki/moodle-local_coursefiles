@@ -16,7 +16,10 @@ into `local` directory.
 ## Changelog
 
 - Version 2022080600
-    - Compatibility with Moodle 4.0
+  - Compatibility with Moodle 4.0
+- Version 2022081200
+  - Add plugin's own capabilities
+  - Handle courses with no files
 
 ## About
 
