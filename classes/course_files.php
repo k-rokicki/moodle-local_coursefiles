@@ -227,16 +227,17 @@ class course_files {
 
         $filelist = $this->get_file_list(true);
 
+        $components = array();
         foreach ($filelist as $file) {
-            $this->components[$file->filecomponent] = self::get_component_translation($file->filecomponent);
+            $components[$file->filecomponent] = self::get_component_translation($file->filecomponent);
         }
 
-        asort($this->components, SORT_STRING | SORT_FLAG_CASE);
+        asort($components, SORT_STRING | SORT_FLAG_CASE);
         $componentsall = array(
             'all' => get_string('allcomponents', 'local_coursefiles')
         );
 
-        $this->components = $componentsall + $this->components;
+        $this->components = $componentsall + $components;
         return $this->components;
     }
 
