@@ -65,9 +65,11 @@ $PAGE->set_heading($course->fullname);
 $PAGE->set_pagelayout('incourse');
 
 require_login($courseid);
+require_capability('local/coursefiles:view', $context);
+$downloadallowed = has_capability('local/coursefiles:download', $context);
 
 $coursefiles = new local_coursefiles\course_files($courseid, $context, $component, $filetype);
-if ($action === 'download') {
+if ($action === 'download' && $downloadallowed) {
     require_sesskey();
     try {
         $coursefiles->download_files($chosenfiles);
@@ -79,5 +81,5 @@ if ($action === 'download') {
 $renderer = $PAGE->get_renderer('local_coursefiles');
 
 echo $OUTPUT->header();
-echo $renderer->overview_page($url, $componenturl, $filetypeurl, $coursefiles);
+echo $renderer->overview_page($url, $componenturl, $filetypeurl, $coursefiles, $downloadallowed);
 echo $OUTPUT->footer();

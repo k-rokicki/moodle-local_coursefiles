@@ -47,6 +47,8 @@ class renderer extends plugin_renderer_base {
      * @param moodle_url $componenturl
      * @param moodle_url $filetypeurl
      * @param course_files $coursefiles
+     * @param bool $downloadallowed
+     *
      * @return string
      * @throws dml_exception|coding_exception|moodle_exception
      */
@@ -54,7 +56,8 @@ class renderer extends plugin_renderer_base {
         moodle_url $url,
         moodle_url $componenturl,
         moodle_url $filetypeurl,
-        course_files $coursefiles)
+        course_files $coursefiles,
+        bool $downloadallowed)
     : string {
         $templatedata = new stdClass();
         $templatedata->component_selection_html = $this->get_component_selection(
@@ -73,6 +76,7 @@ class renderer extends plugin_renderer_base {
             return $file;
         }, $coursefiles->get_file_list());
         $templatedata->files_exist = count($templatedata->files) > 0;
+        $templatedata->download_allowed = $downloadallowed;
         return $this->render_from_template('local_coursefiles/view', $templatedata);
     }
 

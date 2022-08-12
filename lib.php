@@ -34,7 +34,7 @@
 function local_coursefiles_extend_settings_navigation(settings_navigation $nav, context $context) {
     global $DB;
 
-    if ($context instanceof context_course) {
+    if ($context instanceof context_course && has_capability('local/coursefiles:view', $context)) {
         $courseid = $context->get_course_context()->instanceid;
         if (!$course = $DB->get_record('course', array('id' => $courseid))) {
             throw new moodle_exception('invalidcourseid');

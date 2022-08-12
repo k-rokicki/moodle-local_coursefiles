@@ -26,6 +26,7 @@
     * sesskey                  - Sesskey string
     * files                    - Array of files
     * files_exist              - Boolean
+    * download_allowed         - Boolean, can the user download files
 
     Example context (json):
     {
@@ -41,7 +42,8 @@
                                         "filecomponenturl" : "",
                                         "filetype"         : "Image"
                                      }],
-        "files_exist"              : true
+        "files_exist"              : true,
+        "download_allowed"         : true
     }
 
 }}
@@ -103,11 +105,13 @@
         {{/files}}
     </table>
     <div class="local_coursefiles_files_actions">
-        <div class="local_coursefiles_files_action">
-            <button class="btn btn-secondary" type="submit" name="action" value="download">
-                {{#str}}download,local_coursefiles{{/str}}
-            </button>
-        </div>
+        {{#download_allowed}}
+            <div class="local_coursefiles_files_action">
+                <button class="btn btn-secondary" type="submit" name="action" value="download">
+                    {{#str}}download,local_coursefiles{{/str}}
+                </button>
+            </div>
+        {{/download_allowed}}
     </div>
 
     </form>
