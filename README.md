@@ -6,7 +6,7 @@ the course files that are available to them.
 
 ![Course files preview](preview.png)
 
-Tested in: Moodle 4.0
+Supported Moodle versions: 3.5, 3.6, 3.7, 3.8, 3.9, 3.10, 3.11, 4.0
 
 ## Quick install
 
