@@ -44,7 +44,11 @@ function local_coursefiles_extend_settings_navigation(settings_navigation $nav, 
                 $url = new moodle_url('/local/coursefiles/index.php', array('courseid' => $courseid));
                 $course->add(
                     get_string('linkname', 'local_coursefiles'),
-                    $url
+                    $url,
+                    navigation_node::TYPE_CUSTOM,
+                    null,
+                    null,
+                    new pix_icon('i/backup', '')
                 );
             }
         }
