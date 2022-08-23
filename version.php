@@ -26,6 +26,6 @@
 
 defined('MOODLE_INTERNAL') || die;
 
-$plugin->version   = 2022081200;
-$plugin->requires  = 2016051900;
+$plugin->version   = 2022082400;
+$plugin->requires  = 2018051700;
 $plugin->component = "local_coursefiles";

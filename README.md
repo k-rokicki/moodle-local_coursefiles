@@ -20,6 +20,9 @@ into `local` directory.
 - Version 2022081200
   - Add plugin's own capabilities
   - Handle courses with no files
+- Version 2022082400
+  - Fix required Moodle version (3.5+)
+  - Add link icon for Moodle 3.x
 
 ## About
 
